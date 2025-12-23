@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>إعدادات هيدشوت فري فاير</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Tahoma;
+  background:#020617;
+  color:white;
+  text-align:center;
+  padding:30px 15px;
+}
+h2{font-size:22px}
+.box{
+  background:#020617;
+  border:1px solid #334155;
+  padding:22px;
+  border-radius:15px;
+  margin-top:20px;
+  min-height:120px;
+}
+.settings{
+  text-align:right;
+  line-height:1.8;
+  font-size:15px;
+}
+small{color:#94a3b8}
+
+.loading{
+  font-size:16px;
+  color:#e5e7eb;
+}
+.dots::after{
+  content:"";
+  animation:dots 1.5s infinite;
+}
+@keyframes dots{
+  0%{content:"";}
+  25%{content:".";}
+  50%{content:"..";}
+  75%{content:"...";}
+}
+
+/* الإعلان */
+.ad{
+  display:none;
+  margin-top:25px;
+  background:#111827;
+  padding:12px;
+  border-radius:12px;
+}
+</style>
+</head>
+
+<body>
+
+<h2>تحليل جهازك وإعطاء أفضل إعدادات هيدشوت</h2>
+
+<div class="box" id="result">
+  <div class="loading" id="loadingText">
+    ⏳ جاري فحص العتاد<span class="dots"></span>
+  </div>
+</div>
+
+<!-- الإعلان -->
+<div class="ad" id="adBox">
+  <script>
+    atOptions = {
+      'key' : '68624eacbc1ab78860986ee4667f6b67',
+      'format' : 'iframe',
+      'height' : 250,
+      'width' : 300,
+      'params' : {}
+    };
+  </script>
+  <script src="https://www.highperformanceformat.com/68624eacbc1ab78860986ee4667f6b67/invoke.js"></script>
+</div>
+
+<script>
+function analyze(){
+  let ram = navigator.deviceMemory || 2;
+  let cores = navigator.hardwareConcurrency || 2;
+  let width = screen.width;
+
+  let level = "ضعيف";
+  let settings = `
+  الحساسية العامة: 176<br>
+  Red Dot: 164<br>
+  2x Scope: 150<br>
+  4x Scope: 136<br>
+  AWM Scope: 90<br>
+  نظرة حرة: 110<br>
+  DPI: 480
+  `;
+
+  if(ram >= 6 && cores >= 6 && width >= 1080){
+    level = "قوي";
+    settings = `
+    الحساسية العامة: 200<br>
+    Red Dot: 190<br>
+    2x Scope: 176<br>
+    4x Scope: 164<br>
+    AWM Scope: 110<br>
+    نظرة حرة: 130<br>
+    DPI: 600
+    `;
+  } else if(ram >= 4){
+    level = "متوسط";
+    settings = `
+    الحساسية العامة: 188<br>
+    Red Dot: 178<br>
+    2x Scope: 164<br>
+    4x Scope: 152<br>
+    AWM Scope: 100<br>
+    نظرة حرة: 120<br>
+    DPI: 520 – 540
+    `;
+  }
+
+  setTimeout(()=>{
+    document.getElementById("loadingText").innerHTML =
+      "🔍 تحليل دقة الشاشة<span class='dots'></span>";
+  },1000);
+
+  setTimeout(()=>{
+    document.getElementById("loadingText").innerHTML =
+      "⚙️ تحسين إعدادات الحساسية<span class='dots'></span>";
+  },2000);
+
+  setTimeout(()=>{
+    document.getElementById("result").innerHTML = `
+      📱 تصنيف جهازك: <b>${level}</b><br><br>
+      <div class="settings">
+      ⚙️ الإعدادات المقترحة (200%)<br><br>
+      ${settings}
+      </div>
+      <br>
+      <small>⚠️ الإعدادات مبنية على تحليل الجهاز وتجربة لعب حقيقية</small>
+    `;
+
+    // إظهار الإعلان بعد التحليل
+    document.getElementById("adBox").style.display = "block";
+  },3000);
+}
+
+analyze();
+</script>
+
+</body>
+</html>
